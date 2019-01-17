@@ -199,15 +199,14 @@ class StockMovementItem {
 
 
     static StockMovementItem createFromTokens(String [] tokens) {
-        String requisitionItemId = tokens[0] ?: null
-        String productCode = tokens[1] ?: null
-        String productName = tokens[2] ?: null
-        String palletName = tokens[3] ?: null
-        String boxName = tokens[4] ?: null
-        String lotNumber = tokens[5] ?: null
-        Date expirationDate = tokens[6] ? Constants.EXPIRATION_DATE_FORMATTER.parse(tokens[6]) : null
-        Integer quantityRequested = tokens[7] ? tokens[7].toInteger() : null
-        String recipientId = tokens[8]
+        String productCode = tokens[0] ?: null
+        String productName = tokens[1] ?: null
+        String palletName = tokens[2] ?: null
+        String boxName = tokens[3] ?: null
+        String lotNumber = tokens[4] ?: null
+        Date expirationDate = tokens[5] ? Constants.EXPIRATION_DATE_FORMATTER.parse(tokens[6]) : null
+        Integer quantityRequested = tokens[6] ? tokens[6].toInteger() : null
+        String recipientId = tokens[7]
 
         if (!productCode && !quantityRequested) {
             throw new IllegalArgumentException("Product code and quantity requested are required")
@@ -238,7 +237,6 @@ class StockMovementItem {
         }
 
         StockMovementItem stockMovementItem = new StockMovementItem()
-        stockMovementItem.id = requisitionItemId
 
         if (quantityRequested == 0) {
             stockMovementItem.delete = true
